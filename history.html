@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Your Finance History{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto text-white p-6 mt-10 space-y-10">
+
+  <h2 class="text-3xl font-bold text-center mb-8">📜 Finance History for {{ user_email }}</h2>
+
+  <!-- Tax History Section -->
+  <div class="bg-gray-800 p-6 rounded-xl shadow-md">
+    <h3 class="text-2xl font-semibold mb-4">🧾 Tax Calculations</h3>
+    {% if tax_history and tax_history|length > 0 %}
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border border-gray-700">
+          <thead>
+            <tr class="bg-gray-700 text-left text-sm uppercase tracking-wide">
+              <th class="px-4 py-2">Tax Year</th>
+              <th class="px-4 py-2">Annual Income</th>
+              <th class="px-4 py-2">Calculated Tax</th>
+              <th class="px-4 py-2">Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for tax in tax_history %}
+              <tr class="border-t border-gray-600 hover:bg-gray-700 text-sm">
+                <td class="px-4 py-2">{{ tax.tax_year or "N/A" }}</td>
+                <td class="px-4 py-2">Rs {{ '{:,.2f}'.format(tax.income or 0) }}</td>
+                <td class="px-4 py-2">Rs {{ '{:,.2f}'.format(tax.calculated_tax or 0) }}</td>
+                <td class="px-4 py-2">{{ (tax.created_at or "")[:19].replace('T', ' ') }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="text-gray-400 italic">No tax calculations found.</p>
+    {% endif %}
+  </div>
+
+  <!-- Installment History Section -->
+  <div class="bg-gray-800 p-6 rounded-xl shadow-md">
+    <h3 class="text-2xl font-semibold mb-4">📆 Installment Plans</h3>
+    {% if installment_history and installment_history|length > 0 %}
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border border-gray-700">
+          <thead>
+            <tr class="bg-gray-700 text-left text-sm uppercase tracking-wide">
+              <th class="px-4 py-2">Loan Amount</th>
+              <th class="px-4 py-2">Interest Rate (%)</th>
+              <th class="px-4 py-2">Tenure (Months)</th>
+              <th class="px-4 py-2">Monthly Payment</th>
+              <th class="px-4 py-2">Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for plan in installment_history %}
+              <tr class="border-t border-gray-600 hover:bg-gray-700 text-sm">
+                <td class="px-4 py-2">Rs {{ '{:,.2f}'.format(plan.loan_amount or 0) }}</td>
+                <td class="px-4 py-2">{{ plan.interest_rate or "N/A" }}</td>
+                <td class="px-4 py-2">{{ plan.tenure_months or "N/A" }}</td>
+                <td class="px-4 py-2">Rs {{ '{:,.2f}'.format(plan.monthly_payment or 0) }}</td>
+                <td class="px-4 py-2">{{ (plan.created_at or "")[:19].replace('T', ' ') }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="text-gray-400 italic">No installment plans found.</p>
+    {% endif %}
+  </div>
+  <!-- Reverse Finance History Section -->
+<div class="bg-gray-800 p-6 rounded-xl shadow-md">
+  <h3 class="text-2xl font-semibold mb-4">🔄 Reverse Finance History</h3>
+  {% if reverse_history and reverse_history|length > 0 %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full table-auto border border-gray-700">
+        <thead>
+          <tr class="bg-gray-700 text-left text-sm uppercase tracking-wide">
+            <th class="px-4 py-2">Monthly Budget</th>
+            <th class="px-4 py-2">Interest Rate (%)</th>
+            <th class="px-4 py-2">Tenure (Months)</th>
+            <th class="px-4 py-2">Eligible Loan</th>
+            <th class="px-4 py-2">Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for rev in reverse_history %}
+            <tr class="border-t border-gray-600 hover:bg-gray-700 text-sm">
+              <td class="px-4 py-2">Rs {{ '{:,.2f}'.format(rev.monthly_budget or 0) }}</td>
+              <td class="px-4 py-2">{{ rev.interest_rate or "N/A" }}</td>
+              <td class="px-4 py-2">{{ rev.tenure_months or "N/A" }}</td>
+              <td class="px-4 py-2">Rs {{ '{:,.2f}'.format(rev.eligible_loan or 0) }}</td>
+              <td class="px-4 py-2">{{ (rev.created_at or "")[:19].replace('T', ' ') }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-gray-400 italic">No reverse finance entries found.</p>
+  {% endif %}
+</div>
+
+</div>
+{% endblock %}

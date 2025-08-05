@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tax Result</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center px-4">
+  <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-2xl">
+    <h1 class="text-3xl font-bold mb-6 text-center text-blue-400">📄 Tax Calculation Result</h1>
+
+    <!-- Tax Result Output -->
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2 text-green-400">📊 Tax Output</h2>
+      <pre class="bg-gray-900 text-green-300 p-4 rounded-md overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap">
+      {{ result_json | safe }}
+      </pre>
+    </section>
+
+    <!-- Gemini AI Summary -->
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2 text-pink-400">🧠 Gemini AI Summary</h2>
+      <p class="bg-gray-700 p-4 rounded-md text-sm text-white whitespace-pre-wrap leading-relaxed">
+        {{ summary }}
+      </p>
+    </section>
+
+    <!-- Back Button -->
+    <div class="text-center">
+      <a href="/tax"
+         class="inline-block bg-blue-600 hover:bg-blue-700 transition-colors text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+        ← Back to Tax Form
+      </a>
+    </div>
+  </div>
+</body>
+</html>

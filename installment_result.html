@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Installment Plan Result{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gray-900 px-4 py-10 text-white">
+  <div class="w-full max-w-5xl bg-gray-800 p-8 rounded-xl shadow-2xl animate-fade-in">
+    
+    <h2 class="text-4xl font-bold mb-8 text-center text-green-400">📊 Installment Plan Result</h2>
+
+    <!-- Breakdown Table -->
+    <div class="mb-10">
+      <h3 class="text-2xl font-semibold mb-4">💵 Monthly Payment Breakdown</h3>
+      <div class="overflow-x-auto rounded-lg border border-gray-700">
+        <table class="min-w-full table-auto bg-gray-900 text-white">
+          <thead class="bg-gray-700">
+            <tr>
+              <th class="py-3 px-5 border-b border-gray-600 text-left">📅 Month</th>
+              <th class="py-3 px-5 border-b border-gray-600 text-left">💰 Principal</th>
+              <th class="py-3 px-5 border-b border-gray-600 text-left">📈 Interest</th>
+              <th class="py-3 px-5 border-b border-gray-600 text-left">🏦 Remaining Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in result %}
+            <tr class="hover:bg-gray-800 transition duration-200">
+              <td class="py-2 px-5 border-b border-gray-700">{{ row.month }}</td>
+              <td class="py-2 px-5 border-b border-gray-700">{{ row.principal }}</td>
+              <td class="py-2 px-5 border-b border-gray-700">{{ row.interest }}</td>
+              <td class="py-2 px-5 border-b border-gray-700">{{ row.remaining_balance }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AI Summary -->
+    <div class="mb-10">
+      <h3 class="text-2xl font-semibold mb-3">🤖 Gemini AI Summary</h3>
+      <div class="bg-gray-900 border border-gray-700 p-5 rounded-lg shadow-inner">
+        <p class="whitespace-pre-wrap leading-relaxed tracking-wide">{{ summary }}</p>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-6">
+      <a href="/installments"
+         class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+        🔙 Back to Planner
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+</style>
+{% endblock %}

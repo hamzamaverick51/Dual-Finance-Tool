@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-xl mx-auto p-6 mt-10 bg-gray-800 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-bold text-center text-white mb-6">🔁 Reverse EMI Calculator</h1>
+
+    <form method="post" action="/reverse" class="space-y-4">
+        <div>
+            <label for="monthly_budget" class="block text-sm font-medium text-white">Monthly Budget (Rs):</label>
+            <input type="number" step="any" id="monthly_budget" name="monthly_budget" required
+                   class="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+            <label for="interest" class="block text-sm font-medium text-white">Interest Rate (%):</label>
+            <input type="number" step="any" id="interest" name="interest" required
+                   class="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+            <label for="tenure" class="block text-sm font-medium text-white">Tenure (Months):</label>
+            <input type="number" id="tenure" name="tenure" required
+                   class="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition-all duration-300">
+                Calculate Eligible Loan
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

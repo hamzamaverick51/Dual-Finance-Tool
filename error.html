@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-screen text-center">
+  <div class="bg-red-800 text-white p-8 rounded-xl shadow-xl max-w-lg w-full">
+    <h2 class="text-3xl font-bold mb-4">❌ An Error Occurred</h2>
+    <p class="text-lg mb-6">{{ error or 'An unexpected error happened. Please try again.' }}</p>
+    <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow transition">Back to Home</a>
+  </div>
+</div>
+{% endblock %}

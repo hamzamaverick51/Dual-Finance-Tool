@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-8 text-white mt-16 space-y-8">
+
+  <h2 class="text-4xl font-bold text-center">💼 Dual Finance Tool</h2>
+  <p class="text-center text-gray-300 text-lg">
+    Welcome! This tool helps you calculate your taxes and plan your installment payments intelligently using Appexnow APIs.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Tax Calculator -->
+    <a href="/tax" class="bg-gray-800 hover:bg-gray-700 transition rounded-xl p-6 shadow-lg flex flex-col items-center space-y-4">
+      <div class="text-3xl">🧾</div>
+      <div class="text-xl font-semibold">Tax Calculator</div>
+      <p class="text-gray-400 text-center text-sm">
+        Enter your income details and compute your annual tax with breakdowns.
+      </p>
+    </a>
+
+    <!-- Installment Planner -->
+    <a href="/installments" class="bg-gray-800 hover:bg-gray-700 transition rounded-xl p-6 shadow-lg flex flex-col items-center space-y-4">
+      <div class="text-3xl">📆</div>
+      <div class="text-xl font-semibold">Installment Planner</div>
+      <p class="text-gray-400 text-center text-sm">
+        Calculate monthly payments for your loan amount over time.
+      </p>
+    </a>
+  </div>
+
+  <div class="text-center pt-6">
+    <a href="/history" class="inline-block mt-6 text-blue-400 hover:text-blue-300 underline transition">
+      📜 View Past Calculations
+    </a>
+  </div>
+
+</div>
+{% endblock %}
